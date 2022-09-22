@@ -5,6 +5,7 @@ import 'package:whack_a_mole/Widgets/background.dart';
 import 'package:whack_a_mole/Widgets/high_score.dart';
 import "package:whack_a_mole/Widgets/menu_button.dart";
 import "package:whack_a_mole/Widgets/about.dart";
+import 'package:whack_a_mole/Widgets/score_validator.dart';
 import 'package:whack_a_mole/theme_colors.dart';
 
 
@@ -54,7 +55,8 @@ class Home extends StatelessWidget {
               MenuButton(
                 text: "Score validator",
                 action: () {
-                  debugPrint("MANGE MA FUCKING GRAINE");
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ScoreValidator()));
                 },
               ),
               MenuButton(
