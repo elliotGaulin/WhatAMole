@@ -10,7 +10,7 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Image(
       image: Svg('images/backgroundPattern.svg',
-          size: Size.square(50), color: Color.fromARGB(255, 9, 39, 59)),
+          size: Size.square(40), color: Color.fromARGB(255, 9, 39, 59)),
       repeat: ImageRepeat.repeat,
       width: double.infinity,
       height: double.infinity,

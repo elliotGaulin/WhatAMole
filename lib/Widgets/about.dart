@@ -1,13 +1,10 @@
-import 'dart:async';
-
 import "package:flutter/material.dart";
+import 'package:whack_a_mole/theme_colors.dart';
 
 import 'package:whack_a_mole/Widgets/animated_circle_button.dart';
 import 'package:whack_a_mole/Widgets/background.dart';
-import 'package:whack_a_mole/Widgets/home.dart';
 
 class About extends StatefulWidget {
-  static const Color lightBlue = Color.fromARGB(255, 78, 186, 227);
   static const aboutText =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -20,7 +17,7 @@ class About extends StatefulWidget {
 }
 
 class _AboutState extends State<About> {
-  List<Color> colors = [Home.lightBlue.withOpacity(0.5), Colors.transparent];
+  List<Color> colors = [ThemeColors.lightBlue.withOpacity(0.5), Colors.transparent];
   
   @override
   Widget build(BuildContext context) {
@@ -28,7 +25,7 @@ class _AboutState extends State<About> {
       body: Stack(children: [
         const Background(),
         AnimatedContainer(
-          duration: Duration(seconds: 1),
+          duration: const Duration(seconds: 1),
           height: double.infinity,
           width: double.infinity,
           decoration: BoxDecoration(
@@ -83,7 +80,7 @@ class _AboutState extends State<About> {
           ),
         ),
       ]),
-      backgroundColor: const Color.fromARGB(255, 10, 29, 49),
+      backgroundColor: ThemeColors.backgroudBlue,
     );
   }
 }

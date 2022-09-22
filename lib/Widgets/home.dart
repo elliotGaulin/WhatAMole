@@ -2,12 +2,13 @@ import "package:flutter/material.dart";
 
 import 'package:whack_a_mole/Widgets/animated_circle_button.dart';
 import 'package:whack_a_mole/Widgets/background.dart';
+import 'package:whack_a_mole/Widgets/high_score.dart';
 import "package:whack_a_mole/Widgets/menu_button.dart";
 import "package:whack_a_mole/Widgets/about.dart";
+import 'package:whack_a_mole/theme_colors.dart';
+
 
 class Home extends StatelessWidget {
-  static const Color lightBlue = Color.fromARGB(255, 78, 186, 227);
-
   const Home({
     Key? key,
   }) : super(key: key);
@@ -23,7 +24,7 @@ class Home extends StatelessWidget {
               const Spacer(),
               const AnimatedCircleButton(
                 size: Size.square(65),
-                color: lightBlue,
+                color: ThemeColors.lightBlue,
               ),
               const Padding(padding: EdgeInsets.all(10)),
               const Text(
@@ -35,18 +36,19 @@ class Home extends StatelessWidget {
               ),
               const Text(
                 "EVERY TAP MATTERS",
-                style: TextStyle(color: lightBlue, fontSize: 18),
+                style: TextStyle(color: ThemeColors.lightBlue, fontSize: 18),
               ),
               const Padding(padding: EdgeInsets.all(10)),
               const MenuButton(
                 text: "New game",
-                color: lightBlue,
-                bold: true,
+                color: ThemeColors.lightBlue,
+                fontWeight: FontWeight.bold,
               ),
               MenuButton(
                 text: "High score",
                 action: () {
-                  debugPrint("MANGE MA FUCKING GRAINE");
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HighScore()));
                 },
               ),
               MenuButton(
@@ -70,7 +72,7 @@ class Home extends StatelessWidget {
           ),
         ),
       ]),
-      backgroundColor: const Color.fromARGB(255, 10, 29, 49),
+      backgroundColor: ThemeColors.backgroudBlue,
     );
   }
 }

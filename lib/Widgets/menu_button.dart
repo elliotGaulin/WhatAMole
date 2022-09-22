@@ -5,24 +5,24 @@ class MenuButton extends StatefulWidget {
 
   final String text;
   final Color textColor;
-  final bool bold;
+  final FontWeight fontWeight;
   final Function? action;
   const MenuButton(
-      {this.color = Colors.white, this.textColor = Colors.white, this.text = "", this.bold = false, this.action, super.key});
+      {this.color = Colors.white, this.textColor = Colors.white, this.text = "", this.fontWeight = FontWeight.normal, this.action, super.key});
 
   @override
   State<MenuButton> createState() => _MenuButtonState();
 }
 
 class _MenuButtonState extends State<MenuButton> {
-  static const double DEFAULT_MARGIN = 30;
-  static const double ON_TAP_MARGIN = 0;
-  static const double DEFAULT_HEIGHT = 15;
-  static const double ON_TAP_HEIGHT = 20;
+  static const double defaultMargin = 30;
+  static const double onTapMargin = 0;
+  static const double defaultHeight = 15;
+  static const double onTapHeight = 20;
 
   Color mycolor = Colors.transparent;
-  double mymargin = DEFAULT_MARGIN;
-  double myheight = DEFAULT_HEIGHT;
+  double mymargin = defaultMargin;
+  double myheight = defaultHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +32,22 @@ class _MenuButtonState extends State<MenuButton> {
         onTapDown: (details) {
           setState(() {
             mycolor = widget.color;
-            mymargin = ON_TAP_MARGIN;
-            myheight = ON_TAP_HEIGHT;
+            mymargin = onTapMargin;
+            myheight = onTapHeight;
           });
         },
         onTapCancel: () {
           setState(() {
             mycolor = Colors.transparent;
-            mymargin = DEFAULT_MARGIN;
-            myheight = DEFAULT_HEIGHT;
+            mymargin = defaultMargin;
+            myheight = defaultHeight;
           });
         },
         onTapUp: (details) {
           setState(() {
             mycolor = Colors.transparent;
-            mymargin = DEFAULT_MARGIN;
-            myheight = DEFAULT_HEIGHT;
+            mymargin = defaultMargin;
+            myheight = defaultHeight;
           });
         },
         onTap: () {
@@ -70,7 +70,7 @@ class _MenuButtonState extends State<MenuButton> {
                 color: mycolor == Colors.transparent
                     ? widget.textColor
                     : Colors.black,
-                fontWeight: widget.bold ? FontWeight.bold : FontWeight.normal),
+                fontWeight: widget.fontWeight),
           )),
         ),
       ),
