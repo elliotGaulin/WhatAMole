@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whack_a_mole/Widgets/menu_button.dart';
-import 'package:whack_a_mole/theme_colors.dart';
+import 'package:whack_a_mole/Style/theme_colors.dart';
 
 class ScoreValitatorForm extends StatefulWidget {
   const ScoreValitatorForm({super.key});

@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
-import 'package:whack_a_mole/theme_colors.dart';
+import 'package:whack_a_mole/Style/theme_colors.dart';
 import 'package:whack_a_mole/Widgets/high_score_list.dart';
 import 'package:whack_a_mole/Widgets/menu_button.dart';
-import "background.dart";
+import '../Widgets/background.dart';
 
 class HighScore extends StatelessWidget {
   const HighScore({

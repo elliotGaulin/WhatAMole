@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:whack_a_mole/Widgets/background.dart";
 import 'package:whack_a_mole/Widgets/score_validator_form.dart';
-import "package:whack_a_mole/theme_colors.dart";
+import 'package:whack_a_mole/Style/theme_colors.dart';
 
 class ScoreValidator extends StatefulWidget {
   @override

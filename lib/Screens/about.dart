@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:whack_a_mole/theme_colors.dart';
+import 'package:whack_a_mole/Style/theme_colors.dart';
 
 import 'package:whack_a_mole/Widgets/animated_circle_button.dart';
 import 'package:whack_a_mole/Widgets/background.dart';

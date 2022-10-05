@@ -1,12 +1,13 @@
 import "package:flutter/material.dart";
 
+import 'package:whack_a_mole/Screens/high_score.dart';
+import 'package:whack_a_mole/Screens/game_start.dart';
+import 'package:whack_a_mole/Screens/about.dart';
+import 'package:whack_a_mole/Screens/score_validator.dart';
+import 'package:whack_a_mole/Style/theme_colors.dart';
 import 'package:whack_a_mole/Widgets/animated_circle_button.dart';
 import 'package:whack_a_mole/Widgets/background.dart';
-import 'package:whack_a_mole/Widgets/high_score.dart';
 import "package:whack_a_mole/Widgets/menu_button.dart";
-import "package:whack_a_mole/Widgets/about.dart";
-import 'package:whack_a_mole/Widgets/score_validator.dart';
-import 'package:whack_a_mole/theme_colors.dart';
 
 
 class Home extends StatelessWidget {
@@ -40,10 +41,14 @@ class Home extends StatelessWidget {
                 style: TextStyle(color: ThemeColors.lightBlue, fontSize: 18),
               ),
               const Padding(padding: EdgeInsets.all(10)),
-              const MenuButton(
+              MenuButton(
                 text: "New game",
                 color: ThemeColors.lightBlue,
                 fontWeight: FontWeight.bold,
+                action: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: 
+                  (context) => const GameStart()));
+                },
               ),
               MenuButton(
                 text: "High score",
