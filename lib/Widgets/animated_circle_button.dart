@@ -17,6 +17,7 @@ class _AnimatedCircleButtonState extends State<AnimatedCircleButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+        //changements de scale on tap
         onTapDown: (details) {
           setState(() {
             scale = 1.5;
@@ -43,7 +44,7 @@ class _AnimatedCircleButtonState extends State<AnimatedCircleButton> {
               OuterCircleWave(
                 size: widget.size,
                 color: widget.color,
-                start: 0.5,
+                start: 0.5, //Offset pour avoir deux cercles distinct
               ),
               AnimatedContainer(
                 margin: EdgeInsets.all(widget.size.height*0.25),

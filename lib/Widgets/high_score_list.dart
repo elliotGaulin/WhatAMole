@@ -3,6 +3,8 @@ import 'package:whack_a_mole/Objects/high_score.dart';
 import 'package:whack_a_mole/Widgets/high_score_list_item.dart';
 
 class HighScoreList extends StatelessWidget {
+
+  //Liste de scores temporaire
   static List<HighScore> highScores = [
     HighScore(
         dateTime: DateTime.utc(2022, 04, 14, 14, 12, 3),
@@ -18,7 +20,7 @@ class HighScoreList extends StatelessWidget {
         score: 12),
     HighScore(
         dateTime: DateTime.utc(2022, 04, 14, 14, 12, 3),
-        username: "Dereck Lamothe LachanceLachanceLachanceLachanceLachanceLachanceLachance",
+        username: "Dereck Lamothe LachanceLachanceLachanceLachanceLachanceLachanceLachance", //Test overflow
         score: 12),
     HighScore(
         dateTime: DateTime.utc(2022, 04, 14, 14, 12, 3),
@@ -70,7 +72,8 @@ class HighScoreList extends StatelessWidget {
         itemBuilder: (BuildContext context, int i) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical:2.0),
-            child: HighScoreListItem(highScore: highScores[i],color: i % 2 == 0 ? const Color(0xFF333333) : const Color(0xFF666666)),
+            //Couleur alterne entre gris foncé et pâle
+            child: HighScoreListItem(highScore: highScores[i], color: i % 2 == 0 ? const Color(0xFF333333) : const Color(0xFF666666)),
           );
         });
   }

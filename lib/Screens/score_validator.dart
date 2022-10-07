@@ -9,6 +9,9 @@ class ScoreValidator extends StatefulWidget {
 }
 
 class _ScoreValidatorState extends State<ScoreValidator> {
+  String scoreExists = ""; 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +60,7 @@ class _ScoreValidatorState extends State<ScoreValidator> {
                   width: double.infinity,
                   color: Colors.grey.withOpacity(0.5)),
             ),
-            const ScoreValitatorForm(),
+            ScoreValitatorForm(setScoreExists: setScoreExists),
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Container(
@@ -65,7 +68,7 @@ class _ScoreValidatorState extends State<ScoreValidator> {
                   width: double.infinity,
                   color: Colors.grey.withOpacity(0.5)),
             ),
-            const Text("Score exists :", style: TextStyle(color: Colors.white, fontSize: 18),),
+            Text("Score exists : $scoreExists", style: const TextStyle(color: Colors.white, fontSize: 18),),
             const Spacer()
           ]),
         )
@@ -73,4 +76,11 @@ class _ScoreValidatorState extends State<ScoreValidator> {
       backgroundColor: ThemeColors.backgroudBlue,
     );
   }
+
+  void setScoreExists(String scoreExists) {
+    setState(() {
+      this.scoreExists = scoreExists;
+    });
+  }
+
 }

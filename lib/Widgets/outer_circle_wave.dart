@@ -23,8 +23,13 @@ class _OuterCircleWaveState extends State<OuterCircleWave>
   late final AnimationController controller = AnimationController(
     duration: const Duration(seconds: 1, milliseconds: 500),
     vsync: this,
-  )..forward(from: widget.start)
+  )
+    //Utilisé pour offset le départ des cercles
+    ..forward(from: widget.start)
     ..addListener(() {
+
+      //calcule et l'opacité
+      //Erreur <optimized out> si on met directement controller.value dans .withOpacity
       double newOpacity = 1 - (controller.value*1.3);
       if(newOpacity < 0){
         newOpacity = 0;
@@ -33,6 +38,7 @@ class _OuterCircleWaveState extends State<OuterCircleWave>
         opacity = newOpacity;
       });
     })
+    //À la fin de la première itération, on repeat
     ..addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         controller.repeat();

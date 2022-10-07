@@ -1,9 +1,13 @@
+import 'dart:ffi';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:whack_a_mole/Widgets/menu_button.dart';
 import 'package:whack_a_mole/Style/theme_colors.dart';
 
 class ScoreValitatorForm extends StatefulWidget {
-  const ScoreValitatorForm({super.key});
+  Function? setScoreExists; 
+   ScoreValitatorForm({this.setScoreExists ,super.key});
 
   @override
   State<ScoreValitatorForm> createState() => _ScoreValitatorFormState();
@@ -11,6 +15,7 @@ class ScoreValitatorForm extends StatefulWidget {
 
 class _ScoreValitatorFormState extends State<ScoreValitatorForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final random = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +40,16 @@ class _ScoreValitatorFormState extends State<ScoreValitatorForm> {
                         hintText: "DD/MM/YYYY",
                         hintStyle: TextStyle(color: ThemeColors.lightBlue),
                         enabledBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: ThemeColors.lightBlue, width: 2)),
+                            borderSide: BorderSide(
+                                color: ThemeColors.lightBlue, width: 2)),
                         focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: ThemeColors.lightBlue, width: 2))),
+                            borderSide: BorderSide(
+                                color: ThemeColors.lightBlue, width: 2))),
+                    validator: (value) {
+                      //Log valeur à la validation
+                      debugPrint(value);
+                      return null;
+                    },
                   ),
                 )
               ],
@@ -59,8 +69,13 @@ class _ScoreValitatorFormState extends State<ScoreValitatorForm> {
                             borderSide: BorderSide(
                                 color: ThemeColors.lightBlue, width: 2)),
                         focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: ThemeColors.lightBlue, width: 2))),
+                            borderSide: BorderSide(
+                                color: ThemeColors.lightBlue, width: 2))),
+                    validator: (value) {
+                      //Log valeur à la validation
+                      debugPrint(value);
+                      return null;
+                    },
                   ),
                 )
               ],
@@ -77,11 +92,16 @@ class _ScoreValitatorFormState extends State<ScoreValitatorForm> {
                     cursorColor: Colors.purple,
                     decoration: const InputDecoration(
                         enabledBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: ThemeColors.lightBlue, width: 2)),
+                            borderSide: BorderSide(
+                                color: ThemeColors.lightBlue, width: 2)),
                         focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: ThemeColors.lightBlue, width: 2))),
+                            borderSide: BorderSide(
+                                color: ThemeColors.lightBlue, width: 2))),
+                    validator: (value) {
+                      //Log valeur à la validation
+                      debugPrint(value);
+                      return null;
+                    },
                   ),
                 )
               ],
@@ -92,7 +112,8 @@ class _ScoreValitatorFormState extends State<ScoreValitatorForm> {
                 text: "VALIDATE SCORE",
                 color: ThemeColors.lightBlue,
                 action: () {
-                  // Fonction de validation
+                  _formKey.currentState?.validate(); //Les validations log la valeur 
+                  widget.setScoreExists?.call(random.nextBool() ? "yes" : "no" ); //Random entre oui et non
                 },
               ),
             ),

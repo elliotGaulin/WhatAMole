@@ -21,8 +21,8 @@ class GameStart extends StatelessWidget {
                 debugPrint("Game not developped yet");
                 Navigator.of(context).pop();
               },),
-              Text("TAP THE", style: TextStyle(color: Colors.white, fontSize: 18),),
-              Text("CIRCLE TO START", style: TextStyle(color: Colors.white, fontSize: 18),),
+              const Text("TAP THE", style: TextStyle(color: Colors.white, fontSize: 18),),
+              const Text("CIRCLE TO START", style: TextStyle(color: Colors.white, fontSize: 18),),
               const Spacer(),
             ]),
           )
