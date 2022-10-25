@@ -4,7 +4,7 @@ import 'package:whack_a_mole/Objects/high_score.dart';
 import 'package:whack_a_mole/Style/theme_colors.dart';
 
 class HighScoreListItem extends StatefulWidget {
-  final HighScore highScore;
+  final HighScoreEntity highScore;
   final Color color;
 
   const HighScoreListItem({
@@ -31,8 +31,10 @@ class _HighScoreListItemState extends State<HighScoreListItem> {
         Expanded(
           flex: 4,
           child: Text(
-            DateFormat("yyyy-MM-dd, HH:mm:ss").format(widget.highScore.dateTime),
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
+            DateFormat("yyyy-MM-dd, HH:mm:ss")
+                .format(widget.highScore.dateTime),
+            style: const TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
             overflow: TextOverflow.fade,
             maxLines: 1,
             softWrap: false,
@@ -42,7 +44,8 @@ class _HighScoreListItemState extends State<HighScoreListItem> {
           flex: 4,
           child: Text(
             widget.highScore.username.toString(),
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
+            style: const TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
             overflow: TextOverflow.fade,
             maxLines: 1,
             softWrap: false,
@@ -50,7 +53,8 @@ class _HighScoreListItemState extends State<HighScoreListItem> {
         ),
         Text(
           widget.highScore.score.toString(),
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
+          style: const TextStyle(
+              fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
           overflow: TextOverflow.fade,
           maxLines: 1,
           softWrap: false,
