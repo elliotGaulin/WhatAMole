@@ -23,7 +23,7 @@ class HighScore extends StatelessWidget {
                       fontSize: 32,
                       color: Colors.white,
                       fontWeight: FontWeight.w600, height: 2)),
-              const SizedBox(
+              SizedBox(
                 height: 500,
                 child: HighScoreList()),
               MenuButton(

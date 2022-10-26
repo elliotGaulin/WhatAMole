@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import 'package:whack_a_mole/Screens/high_score.dart';
 import 'package:whack_a_mole/Screens/game_start.dart';
 import 'package:whack_a_mole/Screens/about.dart';
+import 'package:whack_a_mole/Screens/insert_score.dart';
 import 'package:whack_a_mole/Screens/score_validator.dart';
 import 'package:whack_a_mole/Style/theme_colors.dart';
 import 'package:whack_a_mole/Widgets/animated_circle_button.dart';

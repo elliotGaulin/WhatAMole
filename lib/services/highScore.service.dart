@@ -1,24 +1,17 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:whack_a_mole/Objects/high_score.dart';
-import 'package:whack_a_mole/Screens/high_score.dart';
+import 'package:whack_a_mole/Objects/high_score_entity.dart';
+import 'package:whack_a_mole/services/sqlite.service.dart';
 
 //insert
 //https://docs.flutter.dev/cookbook/persistence/sqlite
 
-Future<bool> insertDog(HighScoreEntity highScore, Database database) async {
-  // Get a reference to the database.
-  final db = await database;
+Future<bool> inserthighScore(HighScoreEntity highScore) async {
+  final db = await SqliteService.database;
 
-  // Insert the Dog into the correct table. You might also specify the
-  // `conflictAlgorithm` to use in case the same dog is inserted twice.
-  //
-  // In this case, replace any previous data.
   await db.insert(
-    'dogs',
+    'highscore',
     highScore.toMap(),
     conflictAlgorithm: ConflictAlgorithm.replace,
   );
@@ -26,7 +19,14 @@ Future<bool> insertDog(HighScoreEntity highScore, Database database) async {
 }
 
 //select
+Future<List<HighScoreEntity>> getAllHighScore() async {
+  final db = await SqliteService.database;
 
+  final List<Map<String, dynamic>> maps = await db.query('highscore');
+  return List.generate(maps.length, (i) {
+    return HighScoreEntity.fromMap(maps[i]);
+  });
+}
 
 
 //delete

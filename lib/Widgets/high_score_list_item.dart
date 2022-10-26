@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:intl/intl.dart';
-import 'package:whack_a_mole/Objects/high_score.dart';
+import 'package:whack_a_mole/Objects/high_score_entity.dart';
 import 'package:whack_a_mole/Style/theme_colors.dart';
 
 class HighScoreListItem extends StatefulWidget {
