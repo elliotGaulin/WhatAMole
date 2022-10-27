@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import "package:flutter/material.dart";
 //Bouton utilisé pour les menus
 //Pas le code le plus propre. Un de mes premiers widget créé...

@@ -19,6 +19,7 @@ class _InsertScoreFormState extends State<InsertScoreForm> {
 
   String _name = "";
   int _score = 0;
+  int _id = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +93,7 @@ class _InsertScoreFormState extends State<InsertScoreForm> {
                   _formKey.currentState
                       ?.validate(); //Les validations log la valeur
                   _formKey.currentState?.save();
-                  inserthighScore(HighScoreEntity(username: _name, score: _score, dateTime: DateTime.now()));
+                  inserthighScore(HighScoreEntity(id: _id, username: _name, score: _score, dateTime: DateTime.now()));
                   Navigator.of(context).popUntil((route) => route.isFirst);
                 },
               ),

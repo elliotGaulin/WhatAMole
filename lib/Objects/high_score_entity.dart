@@ -4,11 +4,13 @@ class HighScoreEntity {
   DateTime dateTime;
   String username;
   int score;
+  int id;
 
   HighScoreEntity({
     required this.dateTime,
     required this.username,
     required this.score,
+    required this.id,
   });
 
   HighScoreEntity copyWith({
@@ -20,6 +22,7 @@ class HighScoreEntity {
       dateTime: dateTime ?? this.dateTime,
       username: username ?? this.username,
       score: score ?? this.score,
+      id: id,
     );
   }
 
@@ -36,6 +39,7 @@ class HighScoreEntity {
       dateTime: DateTime.fromMillisecondsSinceEpoch(map['dateTime']),
       username: map['username'] ?? '',
       score: map['score']?.toInt() ?? 0,
+      id: map['id']?.toInt() ?? 0,
     );
   }
 

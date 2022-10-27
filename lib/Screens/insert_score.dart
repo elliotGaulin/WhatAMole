@@ -1,12 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:whack_a_mole/Style/theme_colors.dart';
 import '../Widgets/insert_score_form.dart';
-import '../Widgets/menu_button.dart';
-
-import 'package:flutter/material.dart';
 import "package:whack_a_mole/Widgets/background.dart";
-import 'package:whack_a_mole/Widgets/score_validator_form.dart';
-import 'package:whack_a_mole/Style/theme_colors.dart';
 
 class InsertScore extends StatefulWidget {
   const InsertScore({super.key});

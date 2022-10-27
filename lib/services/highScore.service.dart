@@ -22,7 +22,7 @@ Future<bool> inserthighScore(HighScoreEntity highScore) async {
 Future<List<HighScoreEntity>> getAllHighScore() async {
   final db = await SqliteService.database;
 
-  final List<Map<String, dynamic>> maps = await db.query('highscore');
+  final List<Map<String, dynamic>> maps = await db.rawQuery("SELECT * FROM highscore ORDER BY score DESC");
   return List.generate(maps.length, (i) {
     return HighScoreEntity.fromMap(maps[i]);
   });
@@ -30,9 +30,28 @@ Future<List<HighScoreEntity>> getAllHighScore() async {
 
 
 //delete
+//delete an item
+Future<void> deleteHighScore(int id) async {
+  final db = await SqliteService.database;
+
+  await db.delete(
+    'highscore',
+    where: "id = ?",
+    whereArgs: [id],
+  );
+}
 
 
 //update
+Future<void> updateHighScore(HighScoreEntity highScore) async {
+  final db = await SqliteService.database;
 
+  await db.update(
+    'highscore',
+    highScore.toMap(),
+    where: "id = ?",
+    whereArgs: [highScore.id],
+  );
+}
 
 

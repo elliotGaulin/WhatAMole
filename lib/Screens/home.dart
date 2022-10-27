@@ -9,6 +9,8 @@ import 'package:whack_a_mole/Style/theme_colors.dart';
 import 'package:whack_a_mole/Widgets/animated_circle_button.dart';
 import 'package:whack_a_mole/Widgets/background.dart';
 import "package:whack_a_mole/Widgets/menu_button.dart";
+import "package:whack_a_mole/Screens/Modify_Score.dart";
+import 'package:whack_a_mole/Screens/listHighScore.dart';
 
 
 class Home extends StatelessWidget {
@@ -63,6 +65,13 @@ class Home extends StatelessWidget {
                 action: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ScoreValidator()));
+                },
+              ),
+              MenuButton(
+                text: "Score modifier",
+                action: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ModifyScore()));
                 },
               ),
               MenuButton(

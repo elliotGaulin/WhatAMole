@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:whack_a_mole/Screens/Modify_Score.dart';
 import 'package:whack_a_mole/Style/theme_colors.dart';
 import 'package:whack_a_mole/Widgets/high_score_list.dart';
 import 'package:whack_a_mole/Widgets/menu_button.dart';
@@ -26,6 +27,7 @@ class HighScore extends StatelessWidget {
               SizedBox(
                 height: 500,
                 child: HighScoreList()),
+              const Spacer(),
               MenuButton(
                 color: ThemeColors.lightBlue,
                 textColor: Colors.white,
@@ -34,7 +36,7 @@ class HighScore extends StatelessWidget {
                   Navigator.of(context).pop();
                 },
               ),
-              const Spacer(),
+              
             ]),
           )
         ],
