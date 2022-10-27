@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:whack_a_mole/Style/theme_colors.dart';
 import "package:whack_a_mole/Widgets/menu_button.dart";
 import "package:whack_a_mole/Widgets/background.dart";
+import 'package:whack_a_mole/services/highScore.service.dart';
 
 class ModifyScore extends StatefulWidget {
   HighScoreEntity highScoreEntity;
@@ -105,11 +106,16 @@ class _InsertScoreState extends State<ModifyScore> {
                                     borderSide: BorderSide(
                                         color: ThemeColors.lightBlue,
                                         width: 2))),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter a name';
+                              }
+                              return null;
+                            },
                             onSaved: ((newValue) {
                               print(newValue);
                               name = newValue!;
                             }),
-                            //TODO : validation
                           ),
                         )
                       ],
@@ -139,11 +145,16 @@ class _InsertScoreState extends State<ModifyScore> {
                                     borderSide: BorderSide(
                                         color: ThemeColors.lightBlue,
                                         width: 2))),
+                            validator: (value) {
+                              if (value == null || value.isEmpty || int.parse(value) < 0) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
                             onSaved: ((newValue) {
                               score = int.parse(newValue!);
                               print(newValue);
                             }),
-                            //TODO : validation
                           ),
                         )
                       ],
@@ -156,6 +167,12 @@ class _InsertScoreState extends State<ModifyScore> {
                         action: () {
                           if(_formKey.currentState?.validate() ?? false){
                             log('data: '); //Les validations log la valeur
+                            _formKey.currentState?.save();
+                            updateHighScore(HighScoreEntity(
+                                id: widget.highScoreEntity.id,
+                                username: name,
+                                score: score,
+                                dateTime: widget.highScoreEntity.dateTime));
                           }
                         },
                       ),
