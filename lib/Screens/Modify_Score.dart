@@ -146,7 +146,9 @@ class _InsertScoreState extends State<ModifyScore> {
                                         color: ThemeColors.lightBlue,
                                         width: 2))),
                             validator: (value) {
-                              if (value == null || value.isEmpty || int.parse(value) < 0) {
+                              if (value == null ||
+                                  value.isEmpty ||
+                                  int.parse(value) < 0) {
                                 return 'Please enter some text';
                               }
                               return null;
@@ -165,7 +167,7 @@ class _InsertScoreState extends State<ModifyScore> {
                         text: "UPDATE SCORE",
                         color: ThemeColors.lightBlue,
                         action: () {
-                          if(_formKey.currentState?.validate() ?? false){
+                          if (_formKey.currentState?.validate() ?? false) {
                             log('data: '); //Les validations log la valeur
                             _formKey.currentState?.save();
                             updateHighScore(HighScoreEntity(
@@ -173,6 +175,8 @@ class _InsertScoreState extends State<ModifyScore> {
                                 username: name,
                                 score: score,
                                 dateTime: widget.highScoreEntity.dateTime));
+                            Navigator.of(context)
+                                .popUntil((route) => route.isFirst);
                           }
                         },
                       ),

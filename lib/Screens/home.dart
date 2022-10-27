@@ -12,7 +12,6 @@ import 'package:whack_a_mole/Widgets/background.dart';
 import "package:whack_a_mole/Widgets/menu_button.dart";
 import "package:whack_a_mole/Screens/Modify_Score.dart";
 
-
 class Home extends StatelessWidget {
   const Home({
     Key? key,
@@ -49,8 +48,8 @@ class Home extends StatelessWidget {
                 color: ThemeColors.lightBlue,
                 fontWeight: FontWeight.bold,
                 action: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: 
-                  (context) => const GameStart()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const GameStart()));
                 },
               ),
               MenuButton(
@@ -65,13 +64,6 @@ class Home extends StatelessWidget {
                 action: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ScoreValidator()));
-                },
-              ),
-              MenuButton(
-                text: "Score modifier",
-                action: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ModifyScore(highScoreEntity: HighScoreEntity(dateTime: DateTime.now(), username: "dereck", score: 69))));
                 },
               ),
               MenuButton(

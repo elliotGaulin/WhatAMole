@@ -93,7 +93,11 @@ class _InsertScoreFormState extends State<InsertScoreForm> {
                   _formKey.currentState
                       ?.validate(); //Les validations log la valeur
                   _formKey.currentState?.save();
-                  inserthighScore(HighScoreEntity(id: _id, username: _name, score: _score, dateTime: DateTime.now()));
+                  inserthighScore(HighScoreEntity(
+                      id: _id,
+                      username: _name,
+                      score: _score,
+                      dateTime: DateTime.now()));
                   Navigator.of(context).popUntil((route) => route.isFirst);
                 },
               ),
