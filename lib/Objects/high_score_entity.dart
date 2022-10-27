@@ -4,13 +4,13 @@ class HighScoreEntity {
   DateTime dateTime;
   String username;
   int score;
-  int id;
+  int? id;
 
   HighScoreEntity({
     required this.dateTime,
     required this.username,
     required this.score,
-    required this.id,
+    this.id,
   });
 
   HighScoreEntity copyWith({

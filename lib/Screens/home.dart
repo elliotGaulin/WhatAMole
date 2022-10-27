@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:whack_a_mole/Objects/high_score_entity.dart';
 
 import 'package:whack_a_mole/Screens/high_score.dart';
 import 'package:whack_a_mole/Screens/game_start.dart';
@@ -10,7 +11,6 @@ import 'package:whack_a_mole/Widgets/animated_circle_button.dart';
 import 'package:whack_a_mole/Widgets/background.dart';
 import "package:whack_a_mole/Widgets/menu_button.dart";
 import "package:whack_a_mole/Screens/Modify_Score.dart";
-import 'package:whack_a_mole/Screens/listHighScore.dart';
 
 
 class Home extends StatelessWidget {
@@ -71,7 +71,7 @@ class Home extends StatelessWidget {
                 text: "Score modifier",
                 action: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ModifyScore()));
+                      builder: (context) => ModifyScore(highScoreEntity: HighScoreEntity(dateTime: DateTime.now(), username: "dereck", score: 69))));
                 },
               ),
               MenuButton(

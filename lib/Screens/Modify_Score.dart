@@ -1,14 +1,15 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:whack_a_mole/Objects/high_score_entity.dart';
 import 'dart:developer';
 import 'package:whack_a_mole/Style/theme_colors.dart';
-import '../Widgets/insert_score_form.dart';
 import "package:whack_a_mole/Widgets/menu_button.dart";
 import "package:whack_a_mole/Widgets/background.dart";
-import 'package:whack_a_mole/Screens/listHighScore.dart';
 
 class ModifyScore extends StatefulWidget {
-  const ModifyScore({super.key});
+  HighScoreEntity highScoreEntity;
+
+  ModifyScore({super.key, required this.highScoreEntity});
 
   @override
   State<ModifyScore> createState() => _InsertScoreState();
@@ -16,10 +17,19 @@ class ModifyScore extends StatefulWidget {
 
 class _InsertScoreState extends State<ModifyScore> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _name = "";
-  int _score = 0;
-  int _id = 0;
-  final myController = TextEditingController();
+  String name = "";
+  int score = 0;
+  int id = 0;
+  final scoreController = TextEditingController();
+  final nameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = widget.highScoreEntity.username;
+    scoreController.text = widget.highScoreEntity.score.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,18 +63,12 @@ class _InsertScoreState extends State<ModifyScore> {
         Center(
           child: Column(children: [
             const Spacer(),
-            Padding( // Padding
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-              //height 
-              child: Container(
-                  height: 325,
-                  width: double.infinity,
-                  child: ListTileSelectExample(),
-                  ),
-                 ),
             const Text(
               "SCORE SUBMITOR",
-              style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
@@ -73,81 +77,99 @@ class _InsertScoreState extends State<ModifyScore> {
                   width: double.infinity,
                   color: Colors.grey.withOpacity(0.5)),
             ),
-            
             Form(
-      key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 48),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                const Text(
-                  "SCORE: ",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 48),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          "NAME: ",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 18),
+                            cursorColor: Colors.purple,
+                            controller: nameController,
+                            decoration: const InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ThemeColors.lightBlue,
+                                        width: 2)),
+                                focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ThemeColors.lightBlue,
+                                        width: 2))),
+                            onSaved: ((newValue) {
+                              print(newValue);
+                              name = newValue!;
+                            }),
+                            //TODO : validation
+                          ),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          "SCORE: ",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 18),
+                            cursorColor: Colors.purple,
+                            keyboardType: TextInputType.number,
+                            controller: scoreController,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: const InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ThemeColors.lightBlue,
+                                        width: 2)),
+                                focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ThemeColors.lightBlue,
+                                        width: 2))),
+                            onSaved: ((newValue) {
+                              score = int.parse(newValue!);
+                              print(newValue);
+                            }),
+                            //TODO : validation
+                          ),
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24),
+                      child: MenuButton(
+                        text: "UPDATE SCORE",
+                        color: ThemeColors.lightBlue,
+                        action: () {
+                          if(_formKey.currentState?.validate() ?? false){
+                            log('data: '); //Les validations log la valeur
+                          }
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                Expanded(
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.white, fontSize: 18),
-                    cursorColor: Colors.purple,
-                    keyboardType: TextInputType.number,
-                    controller: myController,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    decoration: const InputDecoration(
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: ThemeColors.lightBlue, width: 2)),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: ThemeColors.lightBlue, width: 2))),
-                    onSaved: ((newValue) {
-                      _score = int.parse(newValue!);
-                    }),
-                    //TODO : validation
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 24),
-              child: MenuButton(
-                text: "UPDATE SCORE",
-                color: ThemeColors.lightBlue,
-                action: () {
-                  _formKey.currentState
-                      ?.validate();
-                      log('data: '); //Les validations log la valeur
-                      if(myController.text.isNotEmpty && int.parse(myController.text) > 0 ){           
-                         Navigator.of(context).popUntil((route) => route.isFirst);
-                      }
-                },
               ),
             ),
-          ],
-        ),
-      ),
-    ),
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Container(
                   height: 1,
                   width: double.infinity,
                   color: Colors.grey.withOpacity(0.5)),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 24),
-              child: MenuButton(
-                text: "DELETE SCORE(S)",
-                color: ThemeColors.lightBlue,
-                action: () {
-                  _formKey.currentState
-                      ?.validate(); //Les validations log la valeur
-                  Navigator.of(context).popUntil((route) => route.isFirst);
-                },
-              ),
             ),
             const Spacer()
           ]),
