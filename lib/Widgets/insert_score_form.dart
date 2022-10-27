@@ -50,7 +50,12 @@ class _InsertScoreFormState extends State<InsertScoreForm> {
                     onSaved: ((newValue) {
                       _name = newValue!;
                     }),
-                    //TODO : validation
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a name';
+                      }
+                      return null;
+                    },
                   ),
                 )
               ],
@@ -79,7 +84,14 @@ class _InsertScoreFormState extends State<InsertScoreForm> {
                     onSaved: ((newValue) {
                       _score = int.parse(newValue!);
                     }),
-                    //TODO : validation
+                    validator: (value) {
+                      if (value == null ||
+                          value.isEmpty ||
+                          int.parse(value) < 0) {
+                        return 'Please enter a score';
+                      }
+                      return null;
+                    },
                   ),
                 )
               ],
@@ -90,15 +102,15 @@ class _InsertScoreFormState extends State<InsertScoreForm> {
                 text: "SUBMIT SCORE",
                 color: ThemeColors.lightBlue,
                 action: () {
-                  _formKey.currentState
-                      ?.validate(); //Les validations log la valeur
-                  _formKey.currentState?.save();
-                  inserthighScore(HighScoreEntity(
-                      id: _id,
-                      username: _name,
-                      score: _score,
-                      dateTime: DateTime.now()));
-                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  if (_formKey.currentState?.validate() ?? false) {
+                    _formKey.currentState?.save();
+                    inserthighScore(HighScoreEntity(
+                        id: _id,
+                        username: _name,
+                        score: _score,
+                        dateTime: DateTime.now()));
+                    Navigator.of(context).popUntil((route) => route.isFirst);
+                  }
                 },
               ),
             ),
